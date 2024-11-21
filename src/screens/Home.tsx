@@ -1,7 +1,10 @@
 import {SafeAreaView, StyleSheet, Text, TouchableOpacity} from 'react-native';
 import React from 'react';
+import { useTranslation } from "react-i18next";
 
 export const Home = ({navigation}) => {
+  const { t } = useTranslation();
+
   return (
     <SafeAreaView>
       <TouchableOpacity
@@ -9,7 +12,7 @@ export const Home = ({navigation}) => {
         onPress={() => {
           navigation.navigate('MainInfo');
         }}>
-        <Text style={styles.textStyles}>MainInfo</Text>
+        <Text style={styles.textStyles}>{t('screens.mainInfo.title')}</Text>
       </TouchableOpacity>
     </SafeAreaView>
   );

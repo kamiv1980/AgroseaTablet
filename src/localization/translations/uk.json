@@ -1,0 +1,19 @@
+{
+  "language": "Ukrainian",
+  "screens": {
+    "home": {
+      "title": "Головний екран"
+    },
+    "mainInfo": {
+      "title": "Поточна інформація",
+      "showDetails": "Відкрити модалку",
+      "alertCloseDetails": "Модалка буде закрита",
+      "deviceSettings": "Налаштування пристрою",
+      "closeButton": "Закрити"
+    },
+    "settings": {
+      "title": "Налаштування",
+      "language": "Виберіть мову"
+    }
+  }
+}

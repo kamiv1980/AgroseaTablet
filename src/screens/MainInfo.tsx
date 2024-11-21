@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import { Alert, Modal, Pressable, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { useTranslation } from "react-i18next";
 
 export const MainInfo = ({navigation}) => {
   const [modalVisible, setModalVisible] = useState(false);
+  const { t } = useTranslation();
+
   return (
     <SafeAreaView>
       <TouchableOpacity
@@ -10,13 +13,13 @@ export const MainInfo = ({navigation}) => {
         onPress={() => {
           navigation.navigate('Settings');
         }}>
-        <Text style={styles.textStyles}>Settings</Text>
+        <Text style={styles.textStyles}>{t('screens.settings.title')}</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
         style={styles.touchables}
         onPress={() => setModalVisible(true)}>
-        <Text style={styles.textStyles}>Show Modal</Text>
+        <Text style={styles.textStyles}>{t('screens.mainInfo.showDetails')}</Text>
       </TouchableOpacity>
 
       <Modal
@@ -24,16 +27,16 @@ export const MainInfo = ({navigation}) => {
         transparent={true}
         visible={modalVisible}
         onRequestClose={() => {
-          Alert.alert('Modal has been closed.');
+          Alert.alert(t('screens.mainInfo.alertCloseDetails'));
           setModalVisible(!modalVisible);
         }}>
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-            <Text style={styles.modalText}>Device settings!</Text>
+            <Text style={styles.modalText}>{t('screens.mainInfo.deviceSettings')}</Text>
             <Pressable
               style={[styles.button, styles.buttonClose]}
               onPress={() => setModalVisible(!modalVisible)}>
-              <Text style={styles.textStyle}>Close</Text>
+              <Text style={styles.textStyle}>{t('screens.mainInfo.closeButton')}</Text>
             </Pressable>
           </View>
         </View>

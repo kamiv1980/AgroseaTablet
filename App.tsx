@@ -1,4 +1,5 @@
 import React from 'react';
+import './src/localization/i18n';
 import type {PropsWithChildren} from 'react';
 import {
   SafeAreaView,
@@ -20,6 +21,7 @@ import {
 import {Home, MainInfo, Settings} from './src/screens';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import { useTranslation } from "react-i18next";
 
 const Stack = createNativeStackNavigator();
 
@@ -56,6 +58,8 @@ const Stack = createNativeStackNavigator();
 function App(): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
 
+  const { t } = useTranslation();
+
   // const backgroundStyle = {
   //   backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   // };
@@ -73,20 +77,24 @@ function App(): React.JSX.Element {
           name="Home"
           component={Home}
           options={{
-            title: 'Home',
+            title: t('screens.home.title'),
+            headerBackTitle: t('screens.home.title'),
           }}
         />
         <Stack.Screen
           name="MainInfo"
           component={MainInfo}
           options={{
-            title: 'MainInfo',
+            title: t('screens.mainInfo.title'),
+            headerBackTitle: t('screens.mainInfo.title'),
           }}
         />
         <Stack.Screen
           name="Settings"
           component={Settings}
           options={{
+            title: t('screens.settings.title'),
+            headerBackTitle: t('screens.settings.title'),
             gestureEnabled: false,
           }}
         />

@@ -1,0 +1,19 @@
+{
+  "language": "English",
+  "screens": {
+    "home": {
+      "title": "Home"
+    },
+    "mainInfo": {
+      "title": "Main Info",
+      "showDetails": "Show Modal",
+      "alertCloseDetails": "Modal has been closed",
+      "deviceSettings": "Device settings",
+      "closeButton": "Close"
+    },
+    "settings": {
+      "title": "Settings",
+      "language": "Select a Language"
+    }
+  }
+}

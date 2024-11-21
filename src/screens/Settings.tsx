@@ -1,26 +1,76 @@
-import {SafeAreaView, StyleSheet, Text, TouchableOpacity} from 'react-native';
+import { Pressable, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from 'react';
+import { useTranslation } from "react-i18next";
+
+const LANGUAGES = [
+  { code: 'en', label: 'English' },
+  { code: 'uk', label: 'Ukrainian' }
+];
 
 export const Settings = ({navigation}) => {
+
+  const { i18n, t } = useTranslation();
+  const selectedLanguageCode = i18n.language;
+
+  const setLanguage = code => {
+    return i18n.changeLanguage(code);
+  };
+
   return (
     <SafeAreaView>
-      <TouchableOpacity
-        style={styles.touchables}
-        onPress={() => {
-          navigation.navigate('Settings');
-        }}>
-        <Text style={styles.textStyles}>Settings</Text>
-      </TouchableOpacity>
+      <View style={styles.container}>
+        <View style={styles.row}>
+          <Text style={styles.title}>{t("screens.settings.language")}</Text>
+        </View>
+        {LANGUAGES.map(language => {
+          const selectedLanguage = language.code === selectedLanguageCode;
+
+          return (
+            <Pressable
+              key={language.code}
+              style={styles.buttonContainer}
+              disabled={selectedLanguage}
+              onPress={() => setLanguage(language.code)}
+            ><Text
+              style={[selectedLanguage ? styles.selectedText : styles.text]}
+            >
+              {language.label}
+            </Text>
+            </Pressable>
+          );
+        })}
+      </View>
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  touchables: {
-    marginTop: 15,
-    paddingLeft: 10,
+  container: {
+    paddingTop: 20,
+    paddingHorizontal: 16
   },
-  textStyles: {
-    fontSize: 20,
+  row: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between'
   },
+  title: {
+    color: '#444',
+    fontSize: 28,
+    fontWeight: '600'
+  },
+  buttonContainer: {
+    marginTop: 10
+  },
+  text: {
+    fontSize: 18,
+    color: '#000',
+    paddingVertical: 4
+  },
+  selectedText: {
+    fontSize: 18,
+    fontWeight: '600',
+    color: 'tomato',
+    paddingVertical: 4
+  }
 });
